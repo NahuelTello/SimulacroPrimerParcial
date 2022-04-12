@@ -21,28 +21,34 @@ class Cuota{
         $this->numero = $nuevoID;
     }
 
-    public function get()
+    public function getMontoCuota()
     {
+        return $this->monto_cuota;
     }
 
-    public function set()
+    public function setMontoCuota($nuevoMonto)
     {
+        $this->monto_cuota = $nuevoMonto;
     }
 
-    public function get()
+    public function getMontoInteres()
     {
+        return $this->monto_interes;
     }
 
-    public function set()
+    public function setMontoInteres($nuevoMonto)
     {
+        $this->monto_interes = $nuevoMonto;
     }
 
-    public function get()
+    public function getCuotaCancelada()
     {
+        return $this->cancelada;
     }
 
-    public function set()
+    public function setCuotaCancelada($nuevaCancelacion)
     {
+        $this->cancelada = $nuevaCancelacion;
     }
 
 
