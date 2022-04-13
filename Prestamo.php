@@ -100,16 +100,31 @@ class Prestamo{
      * @return float
      */
     public function calcularInteresPrestamo($numCuota){
-        $coleccion = $this->getArrayCuotas();
-        $numCuota = ($this->getMonto() - (($this->getMonto()/$this->getCantidadCuotas()) * $numCuota - 1)) * $this->getTazaInteres() / 0.01;
-        for ($i=0; $i <count($coleccion) ; $i++) {
-            $coleccion[$i] = $numCuota;
-            array_push($coleccion);
-        }
+        $getMonto = $this->getMonto();
+        $getCantCuotas = $this->getCantidadCuotas();
+        $getTazaInteres = $this->getTazaInteres();
+        $interes = ( $getMonto - ( ($getMonto/$getCantCuotas ) * ( $numCuota - 1 ) ) ) * $getTazaInteres / 0.01;
+        return $interes;
     }
 
+    /**
+     * 
+     * @param void
+     * @return void
+     */
+    public function otorgarPrestamo(){
+        $nuevaFecha = getdate();
+        $this->setFechaOtorgamiento($nuevaFecha);
+        $cantCuotas = $this->getCantidadCuotas();
+        $getMonto = $this->getMonto();
+        $importeTotal = $getMonto / $cantCuotas;
+        $this->calcularInteresPrestamo($importeTotal);
+    }
 
-
+    public function darSiguienteCuotaPagar(){
+        $cuotaCancelada = false;
+        
+    }
 
     public function __toString()
     {
