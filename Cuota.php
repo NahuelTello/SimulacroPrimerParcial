@@ -50,17 +50,22 @@ class Cuota{
         $this->cancelada = $nuevaCancelacion;
     }
 
+    //Implementar el método darMontoFinalCuota() que retorna el importe total de la cuota mas los intereses que deben ser aplicados.
+    /**
+     * Retorna el importe total de la cuota mas los intereses que deben ser aplicados
+     * @param void
+     * @return void
+     */
     public function darMontoFinalCuota(){
-        
+        $montoCuota = $this->getMontoCuota();
+        $interes = $this->getMontoInteres();
+        $montoFinal = $montoCuota + $interes;
+        return $montoFinal;
     }
-
-
-
-
-
 
     public function __toString()
     {
-        
+        $str = "Numero Cuota: {$this->getNumero()} \nMonto Cuota:$ {$this->getMontoCuota()} \nMonto Interes:$ {$this->getMontoInteres()} \nCuota Cancelada: {$this->getCuotaCancelada()}";
+        return $str;
     }
 }
