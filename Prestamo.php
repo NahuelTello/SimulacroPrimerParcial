@@ -104,6 +104,7 @@ class Prestamo{
         $numCuota = ($this->getMonto() - (($this->getMonto()/$this->getCantidadCuotas()) * $numCuota - 1)) * $this->getTazaInteres() / 0.01;
         for ($i=0; $i <count($coleccion) ; $i++) {
             $coleccion[$i] = $numCuota;
+            array_push($coleccion);
         }
     }
 
