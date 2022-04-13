@@ -34,9 +34,10 @@ class Financiera{
         $this->coleccionPrestamos = $nuevaColeccion;
     }
 
-    //Implementar el método incorporarPrestamo que recibe por parámetro un nuevo préstamo.
     public function incorporarPrestamo($nuevoPrestamo){
-        
+        $coleccion = $this->getArrayPrestamosOtorgados();
+        array_push($coleccion, $nuevoPrestamo);
+        $this->setArrayPrestamosOtorgados($coleccion);
     }
 
     /* Implementar el método otorgarPrestamoSiCalifica, método que recorre la lista de prestamos que no
