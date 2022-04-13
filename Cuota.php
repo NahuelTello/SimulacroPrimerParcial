@@ -3,14 +3,13 @@ class Cuota{
     private $numero;
     private $monto_cuota;
     private $monto_interes;
-    private $cancelada; //Boolean 
+    private $cancelada = false; //Boolean 
 
-    public function __construct($ID, $montoCuota, $montoInteres, $cuotaCancelada)
+    public function __construct($ID, $montoCuota, $montoInteres)
     {
         $this->numero = $ID;
         $this->monto_cuota = $montoCuota;
         $this->monto_interes = $montoInteres;
-        $this->cancelada = $cuotaCancelada;
     }
 
     public function getNumero(){
@@ -51,7 +50,9 @@ class Cuota{
         $this->cancelada = $nuevaCancelacion;
     }
 
-
+    public function darMontoFinalCuota(){
+        
+    }
 
 
 
