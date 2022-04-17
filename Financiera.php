@@ -27,11 +27,11 @@ class Financiera{
     }
 
     public function getArrayPrestamosOtorgados(){
-        return $this->coleccionPrestamos;
+        return $this->coleccion_prestamos_otorgados;
     }
 
     public function setArrayPrestamosOtorgados($nuevaColeccion){
-        $this->coleccionPrestamos = $nuevaColeccion;
+        $this->coleccion_prestamos_otorgados = $nuevaColeccion;
     }
 
     public function incorporarPrestamo($nuevoPrestamo){
@@ -45,7 +45,15 @@ class Financiera{
     cantidad_de_cuotas no supere el 40 % del neto del solicitante, si la verificación es satisfactoria se invoca
     al método otorgarPrestamo. */
     public function otorgarPrestamoSiCalifica(){
-        
+        $arrayPrestamos = $this->getArrayPrestamosOtorgados();
+        for ($i=0; $i < count($arrayPrestamos) ; $i++) { 
+            if (count($this->getArrayPrestamosOtorgados()[$i]->getArrayCuotas()) == 0) {
+                $objPersona = $this->getArrayPrestamosOtorgados()[$i]->getPersona();
+                if ($this->getArrayPrestamosOtorgados()[$i]->getMonto() / $this->getArrayPrestamosOtorgados()[$i]->getCantidadDeCuotas() <= $objPersona->getNeto() * 0.4) {
+                    $this->getArrayPrestamosOtorgados()[$i]->otorgarPrestamo();
+                }
+            }
+        }
     }
 
     /* Implementar el método informarCuotaPagar(idPrestamo) que recibe por parámetro la identificación del
@@ -53,14 +61,27 @@ class Financiera{
     cuota a pagar. El método debe retornar la referencia a la cuota. Utilizar para su implementación el método
     darSiguienteCuotaPagar */
     public function informarCuotaPagar($idPrestamo){
+        $encontrado = false;
+        $siguienteCuota = null;
+        $i = 0;
+        do {
+            if ($idPrestamo == $this->getArrayPrestamosOtorgados()[$i]->getIdentificacion()) {
+                $siguienteCuota = $this->getArrayPrestamosOtorgados()[$i]->darSiguienteCuotaPagar();
+                $encontrado = true;
+            }
+            $i++;
+        } while ($i < count($this->getArrayPrestamosOtorgados()) && $encontrado == false);
+
+        return $siguienteCuota;
 
     }
 
     public function coleccionPrestamosStr(){
-        $coleccion_prestamos_otorgados = $this->getArrayPrestamosOtorgados();
-        $str = "";
-        foreach ($coleccion_prestamos_otorgados as $indice => $elemento) {
-            $str = $str.$elemento;
+        $str = " ";
+        $i=0;
+        foreach ($this->getArrayPrestamosOtorgados() as $indice) {
+            $str .= $indice;
+            $i++;
         }
         return $str;
     }

@@ -57,12 +57,12 @@ class Prestamo{
 
     public function getCantidadCuotas()
     {
-        return $this->cantidadCuotas;
+        return $this->cantidad_de_cuotas;
     }
 
     public function setCantidadCuotas($nuevaCantCuotas)
     {
-        $this->cantidadCuotas = $nuevaCantCuotas;
+        $this->cantidad_de_cuotas = $nuevaCantCuotas;
     }
 
     public function getTazaInteres()
@@ -145,15 +145,21 @@ class Prestamo{
         $coleccion = $this->getArrayCuotas();
         $str= "";
         foreach ($coleccion as $indice => $elemento) {
-            $str = $str.$elemento;
+            $str .= $indice;
         }
         return $str;
     }
 
     public function __toString()
     {
-        $objetoPersona = $this->getInstanciaPersona();
-        $res = "ID PRESTAMO: {$this->getIdPrestamo()} \nID ELECTRODOMESTICO: {$this->getIdElectrodomestico()} \nFecha de otorgamiento: {$this->getFechaOtorgamiento()} \nMonto: $ {$this->getMonto()} \nCantidad de Cuotas: {$this->getCantidadCuotas()} \nTaza de Interés: {$this->getTazaInteres()} \nColeccion Cuotas: {$this->cuotasToString()} \nDatos de la Persona: {$objetoPersona->getNombre()} {$objetoPersona->getApellido()} - DNI {$objetoPersona->getDni()}";
+        $res = "ID PRESTAMO: {$this->getIdPrestamo()}
+        \nID ELECTRODOMESTICO: {$this->getIdElectrodomestico()}
+        \nFecha de otorgamiento: {$this->getFechaOtorgamiento()}
+        \nMonto: $ {$this->getMonto()}
+        \nCantidad de Cuotas: {$this->getCantidadCuotas()}
+        \nTaza de Interés: {$this->getTazaInteres()}
+        \nColeccion Cuotas: {$this->cuotasToString()}
+        \nDatos de la Persona: {$this->getInstanciaPersona()}";
         return $res;
     }
 }

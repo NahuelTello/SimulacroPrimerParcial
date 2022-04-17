@@ -8,11 +8,10 @@ class Persona{
     private $telefono;
     private $neto;
 
-    public function __construct($name, $lastName, $DNI, $direccion, $email, $tel, $net)
+    public function __construct($name, $lastName, $direccion, $email, $tel, $net)
     {
         $this->nombre = $name;
         $this->apellido = $lastName;
-        $this->dni = $DNI;
         $this->direccion = $direccion;
         $this->mail = $email;
         $this->telefono = $tel;
