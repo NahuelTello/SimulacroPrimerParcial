@@ -65,7 +65,10 @@ class Cuota{
 
     public function __toString()
     {
-        $str = "Numero Cuota: {$this->getNumero()} \nMonto Cuota:$ {$this->getMontoCuota()} \nMonto Interes:$ {$this->getMontoInteres()} \nCuota Cancelada: {$this->getCuotaCancelada()}";
+        $str = "\nNumero Cuota: {$this->getNumero()}
+        \nMonto Cuota:$ {$this->getMontoCuota()}
+        \nMonto Interes:$ {$this->getMontoInteres()}
+        \nCuota Cancelada: {$this->getCuotaCancelada()}";
         return $str;
     }
 }

@@ -21,31 +21,30 @@ $listaDePrestamos[2] = new Prestamo(3,10000,2,0.1,$listaDePersonas[1]);
 $objFinanciera->incorporarPrestamo($listaDePrestamos[0]);
 $objFinanciera->incorporarPrestamo($listaDePrestamos[1]);
 $objFinanciera->incorporarPrestamo($listaDePrestamos[2]);
-echo $objFinanciera;
+echo $objFinanciera."\n";
 
 
-// Otorgamos los préstamos que cumplan las conidiciones y los mostramos nuevamente
+
 $objFinanciera->otorgarPrestamoSiCalifica();
-echo $objFinanciera;
+echo $objFinanciera . "\n";
 
-// Solicitamos la cuota a pagar del préstamo con el id 2
-$objCuota = $objFinanciera->informarCuotaPagar(1); // Error, no cumple la condición para otorgar el préstamo
-echo $objCuota; // Por ende no va a tener contenido que mostrar 
 
-/*$objCuota = $objFinanciera->informarCuotaPagar(1); // Este si va a funcionar
-echo $objCuota;*/
+$objCuota = $objFinanciera->informarCuotaPagar(1); 
+echo $objCuota . "\n"; 
 
-if ($objCuota <> null) {
-    echo "\nMonto final cuota: $". $objCuota->darMontoFinalCuota(). "\n";
-    $objCuota->setCancelada(true);
+$objCuota = $objFinanciera->informarCuotaPagar(2); 
+echo $objCuota . "\n";
+
+if ($objCuota != null) {
+    echo "\nMonto final de cada cuota: $". $objCuota->getMontoCuota(). "\n";
+    $objCuota->setCuotaCancelada(true);
 }
 else {
-    echo "No se otorgó el préstamo";
+    echo "No se otorgó el préstamo :c";
 }
 
 
-$objCuota = $objFinanciera->informarCuotaPagar(1); // Mismo error que arriba
+$objCuota = $objFinanciera->informarCuotaPagar(3); 
 
-// $objCuota = $objFinanciera->informarCuotaPagar(1);
 
-echo $objCuota;
+echo $objCuota . "\n";

@@ -115,16 +115,22 @@ class Prestamo{
     public function otorgarPrestamo(){
         $nuevaFecha = getdate();
         $this->setFechaOtorgamiento($nuevaFecha);
+
         $coleccion = $this->getArrayCuotas();
+
         $montoCuota = $this->getMonto() / $this->getCantidadCuotas();
         
         for ($i=0; $i < $this->getCantidadCuotas() ; $i++) {
+
             $interes = $this->calcularInteresPrestamo($i + 1);
+
             $objCuota = new Cuota($i+1, $montoCuota, $interes); //Crea una nueva instancia cuota para crear una cuota
+            
             $coleccion[$i] = $objCuota;
         }
         $this->setArrayCuotas($coleccion);
     }
+    
     //Implementar el método darSiguienteCuotaPagar método que retorna la referencia a la siguiente cuota
     //que debe ser abonada de un préstamo, si el préstamo tiene todas sus cuotas canceladas retorna null.
     public function darSiguienteCuotaPagar(){
@@ -152,7 +158,7 @@ class Prestamo{
 
     public function __toString()
     {
-        $res = "ID PRESTAMO: {$this->getIdPrestamo()}
+        $res = "\nID PRESTAMO: {$this->getIdPrestamo()}
         \nID ELECTRODOMESTICO: {$this->getIdElectrodomestico()}
         \nFecha de otorgamiento: {$this->getFechaOtorgamiento()}
         \nMonto: $ {$this->getMonto()}

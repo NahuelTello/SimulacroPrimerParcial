@@ -45,12 +45,21 @@ class Financiera{
     cantidad_de_cuotas no supere el 40 % del neto del solicitante, si la verificación es satisfactoria se invoca
     al método otorgarPrestamo. */
     public function otorgarPrestamoSiCalifica(){
-        $arrayPrestamos = $this->getArrayPrestamosOtorgados();
-        for ($i=0; $i < count($arrayPrestamos) ; $i++) { 
+
+        $lenghtArray = count($this->getArrayPrestamosOtorgados());
+        for ($i=0; $i < $lenghtArray ; $i++) { 
+
             if (count($this->getArrayPrestamosOtorgados()[$i]->getArrayCuotas()) == 0) {
-                $objPersona = $this->getArrayPrestamosOtorgados()[$i]->getPersona();
-                if ($this->getArrayPrestamosOtorgados()[$i]->getMonto() / $this->getArrayPrestamosOtorgados()[$i]->getCantidadDeCuotas() <= $objPersona->getNeto() * 0.4) {
+
+                $objPersona = $this->getArrayPrestamosOtorgados()[$i]->getInstanciaPersona();
+
+                $monto = $this->getArrayPrestamosOtorgados()[$i]->getMonto() ;
+                $cantCuotas = $this->getArrayPrestamosOtorgados()[$i]->getCantidadCuotas();
+                $montoCuota = $monto / $cantCuotas ;
+                if ( ($montoCuota) <= ($objPersona->getNeto() * 0.4)) {
+
                     $this->getArrayPrestamosOtorgados()[$i]->otorgarPrestamo();
+
                 }
             }
         }
@@ -77,18 +86,18 @@ class Financiera{
     }
 
     public function coleccionPrestamosStr(){
-        $str = " ";
-        $i=0;
-        foreach ($this->getArrayPrestamosOtorgados() as $indice) {
-            $str .= $indice;
-            $i++;
+        $str = "";
+        foreach ($this->getArrayPrestamosOtorgados() as $indice => $elemento) {
+            $str .= $elemento;
         }
         return $str;
     }
 
     public function __toString()
     {
-        $res = "Denominacion: {$this->getDenominacion()} \nDireccion: {$this->getDireccion()} \nPrestamos Otorgados: {$this->coleccionPrestamosStr()}";
+        $res = "\nDenominacion: {$this->getDenominacion()}
+        \nDireccion: {$this->getDireccion()}
+        \nPrestamos Otorgados: {$this->coleccionPrestamosStr()}";
         return $res;
     }
 
