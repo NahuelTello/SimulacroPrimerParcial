@@ -9,7 +9,7 @@ class Financiera{
         $this->denominacion = $denominacionFinanciera;
         $this->direccion = $direc;
     }
-
+    // METODOS DE ACCESO
     public function getDenominacion(){
         return $this->denominacion;
     }
@@ -33,13 +33,25 @@ class Financiera{
     public function setArrayPrestamosOtorgados($nuevaColeccion){
         $this->coleccion_prestamos_otorgados = $nuevaColeccion;
     }
+    // FIN METODOS DE ACCESO
 
-    public function incorporarPrestamo($nuevoPrestamo){
-        $coleccion = $this->getArrayPrestamosOtorgados();
-        array_push($coleccion, $nuevoPrestamo);
-        $this->setArrayPrestamosOtorgados($coleccion);
+    // METODO __toString
+    public function __toString(){
+        $res = "\nDenominacion: {$this->getDenominacion()}
+        \nDireccion: {$this->getDireccion()}
+        \nPrestamos Otorgados: {$this->coleccionPrestamosStr()}";
+        return $res;
     }
-
+    // FIN METODO __toString
+    
+    // FUNCIONALIDAD O COMPORTAMIENTO DE LA CLASE
+    public function incorporarPrestamo($nuevoPrestamo){
+        $nueva_coleccion = $this->getArrayPrestamosOtorgados();
+        array_push($nueva_coleccion, $nuevoPrestamo);
+        $this->setArrayPrestamosOtorgados($nueva_coleccion);
+    }
+    
+    
     /* Implementar el método otorgarPrestamoSiCalifica, método que recorre la lista de prestamos que no
     han sido generadas sus cuotas. Por cada préstamo, se corrobora que su monto dividido la
     cantidad_de_cuotas no supere el 40 % del neto del solicitante, si la verificación es satisfactoria se invoca
@@ -92,13 +104,6 @@ class Financiera{
         }
         return $str;
     }
-
-    public function __toString()
-    {
-        $res = "\nDenominacion: {$this->getDenominacion()}
-        \nDireccion: {$this->getDireccion()}
-        \nPrestamos Otorgados: {$this->coleccionPrestamosStr()}";
-        return $res;
-    }
+    // FIN DE LA FUNCIONALIDAD O COMPORTAMIENTO DE LA CLASE
 
 }

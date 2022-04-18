@@ -139,7 +139,7 @@ class Prestamo{
         $i=0;
         while ( ($objSigCuota == null) && ($i < count($coleccion))) {
             $objCuota = $coleccion[$i];
-            if (!$objCuota->getCuotaCancelada()) {
+            if ( !( $objCuota->getCuotaCancelada() ) ) {
                 $objSigCuota = $objCuota;
             }
             $i++;
@@ -151,7 +151,7 @@ class Prestamo{
         $coleccion = $this->getArrayCuotas();
         $str= "";
         foreach ($coleccion as $indice => $elemento) {
-            $str .= $indice;
+            $str .= $elemento;
         }
         return $str;
     }
