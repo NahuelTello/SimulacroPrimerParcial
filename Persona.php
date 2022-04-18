@@ -88,13 +88,7 @@ class Persona{
 
     public function __toString()
     {
-        $res = "\nNombre: {$this->getNombre()}
-        \nApellido: {$this->getApellido()}
-        \nDni: {$this->getDni()}
-        \nDireccion: {$this->getDireccion()}
-        \nMail: {$this->getMail()}
-        \nTelefono: {$this->getTelefono()}
-        \nNeto: {$this->getNeto()}";
+        $res = "\nNombre: {$this->getNombre()}\nApellido: {$this->getApellido()}\nDireccion: {$this->getDireccion()}\nMail: {$this->getMail()}\nTelefono: {$this->getTelefono()}\nNeto: {$this->getNeto()}\n--------------------------------";
         return $res;
     }
 }

@@ -37,9 +37,7 @@ class Financiera{
 
     // METODO __toString
     public function __toString(){
-        $res = "\nDenominacion: {$this->getDenominacion()}
-        \nDireccion: {$this->getDireccion()}
-        \nPrestamos Otorgados: {$this->coleccionPrestamosStr()}";
+        $res = "--------------------------------\nDenominacion: {$this->getDenominacion()} \nDireccion: {$this->getDireccion()} \nPrestamos Otorgados: {$this->coleccionPrestamosStr()}--------------------------------\n";
         return $res;
     }
     // FIN METODO __toString
@@ -86,7 +84,7 @@ class Financiera{
         $siguienteCuota = null;
         $i = 0;
         do {
-            if ($idPrestamo == $this->getArrayPrestamosOtorgados()[$i]->getIdentificacion()) {
+            if ($idPrestamo == $this->getArrayPrestamosOtorgados()[$i]->getIdPrestamo()) {
                 $siguienteCuota = $this->getArrayPrestamosOtorgados()[$i]->darSiguienteCuotaPagar();
                 $encontrado = true;
             }
@@ -99,8 +97,8 @@ class Financiera{
 
     public function coleccionPrestamosStr(){
         $str = "";
-        foreach ($this->getArrayPrestamosOtorgados() as $indice => $elemento) {
-            $str .= $elemento;
+        foreach ($this->getArrayPrestamosOtorgados() as $indice ) {
+            $str .= $indice;
         }
         return $str;
     }

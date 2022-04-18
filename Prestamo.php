@@ -13,9 +13,9 @@ class Prestamo{
     {
         $this->ID_prestamo = $ID;
         $this->monto = $montoPrestamo;
-        $this->cantidadCuotas = $cantCuotas;
+        $this->cantidad_de_cuotas = $cantCuotas;
         $this->taza_interes = $tazaInteres;
-        $this->objetoPersona = $instanciaPersona;
+        $this->objPersona = $instanciaPersona;
     }
 
     public function getIdPrestamo(){
@@ -119,11 +119,9 @@ class Prestamo{
         $coleccion = $this->getArrayCuotas();
 
         $montoCuota = $this->getMonto() / $this->getCantidadCuotas();
-        
         for ($i=0; $i < $this->getCantidadCuotas() ; $i++) {
 
             $interes = $this->calcularInteresPrestamo($i + 1);
-
             $objCuota = new Cuota($i+1, $montoCuota, $interes); //Crea una nueva instancia cuota para crear una cuota
             
             $coleccion[$i] = $objCuota;
@@ -158,14 +156,7 @@ class Prestamo{
 
     public function __toString()
     {
-        $res = "\nID PRESTAMO: {$this->getIdPrestamo()}
-        \nID ELECTRODOMESTICO: {$this->getIdElectrodomestico()}
-        \nFecha de otorgamiento: {$this->getFechaOtorgamiento()}
-        \nMonto: $ {$this->getMonto()}
-        \nCantidad de Cuotas: {$this->getCantidadCuotas()}
-        \nTaza de Interés: {$this->getTazaInteres()}
-        \nColeccion Cuotas: {$this->cuotasToString()}
-        \nDatos de la Persona: {$this->getInstanciaPersona()}";
+        $res = "\nID PRESTAMO: {$this->getIdPrestamo()} \nFecha de otorgamiento:{$this->getFechaOtorgamiento()}\nMonto: $ {$this->getMonto()}\nCantidad de Cuotas: {$this->getCantidadCuotas()}\nTaza de Interés: {$this->getTazaInteres()}\nColeccion Cuotas: {$this->cuotasToString()}\nDatos de la Persona{$this->getInstanciaPersona()}";
         return $res;
     }
 }

@@ -20,7 +20,8 @@ $listaDePrestamos[2] = new Prestamo(3,10000,2,0.1,$listaDePersonas[1]);
 // Incorporamos los préstamos a nuestra financiera y los mostramos
 $objFinanciera->incorporarPrestamo($listaDePrestamos[0]);
 $objFinanciera->incorporarPrestamo($listaDePrestamos[1]);
-$objFinanciera->incorporarPrestamo($listaDePrestamos[2]);
+$objFinanciera->incorporarPrestamo($listaDePrestamos[1]);
+
 echo $objFinanciera."\n";
 
 
@@ -29,8 +30,10 @@ $objFinanciera->otorgarPrestamoSiCalifica();
 echo $objFinanciera . "\n";
 
 
+
 $objCuota = $objFinanciera->informarCuotaPagar(1); 
-echo $objCuota . "\n"; 
+echo $objCuota . "\n";
+
 
 $objCuota = $objFinanciera->informarCuotaPagar(2); 
 echo $objCuota . "\n";
@@ -44,7 +47,7 @@ else {
 }
 
 
-$objCuota = $objFinanciera->informarCuotaPagar(3); 
+$objCuota = $objFinanciera->informarCuotaPagar(2); 
 
 
 echo $objCuota . "\n";
